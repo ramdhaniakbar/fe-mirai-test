@@ -1,8 +1,16 @@
+@import url('https://fonts.googleapis.com/css2?family=Charm:wght@400;700&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Parisienne&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap');
 @import "tailwindcss";
 
-#root {
-  max-width: none !important;
-  margin: 0 !important;
-  padding: 0 !important;
-  text-align: start !important;
+@theme {
+  /* font family */
+  --font-display: "Plus Jakarta Sans", "sans-serif";
+
+  /* colors */
+  --color-primary: #181818;
+  --color-secondary: #556B80;
+  --color-gray: #919191;
+}
+
+* {
+  @apply font-display;
 }
