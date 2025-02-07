@@ -3,11 +3,12 @@ import background from "../../assets/images/bg-home.jpg"
 import diary from "../../assets/images/diary.svg"
 import axios from "axios"
 import moment from "moment"
+import { API_URL } from "../../config/generalHelper"
 
 const HomePage = () => {
   const fetchUserActivity = async () => {
     const { data } = await axios.get(
-      `${import.meta.env.VITE_API_URL}/api/user-activity`
+      `${API_URL}/api/user-activity`
     )
     return data.data
   }
