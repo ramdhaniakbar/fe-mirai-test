@@ -95,7 +95,7 @@ const HomePage = () => {
           <p className="text-xl font-semibold uppercase text-gray-400 mb-2">
             Jumlah Diary Saat Ini
           </p>
-          <h2 className="text-4xl font-bold">{activities ?.total_user_activity ?? 0}</h2>
+          <h2 className="text-4xl font-bold">{activities ?.total_diary ?? 0}</h2>
         </div>
       </div>
 
@@ -117,7 +117,7 @@ const HomePage = () => {
               <div className="flex justify-between">
                 <span className="text-gray text-sm">{activity.activities}</span>
                 <span className="text-gray text-sm">
-                  {moment(activity.created_at).startOf("day").fromNow()}
+                  {moment(activity.created_at).startOf('hour').fromNow()}
                 </span>
               </div>
             </div>
