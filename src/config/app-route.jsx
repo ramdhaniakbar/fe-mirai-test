@@ -9,6 +9,7 @@ import { Navigate } from "react-router";
 import { getToken } from "./generalHelper";
 import CreateDiaryPage from "../pages/diaries/CreateDiaryPage";
 import EditDiaryPage from "../pages/diaries/EditDiaryPage";
+import KodeposPage from "../pages/kodepos/KodeposPage";
 
 const isAuthenticated = () => !!getToken();
 
@@ -29,6 +30,7 @@ const routes = [
   { path: "/diary/create", element: <ProtectedRoute element={<CreateDiaryPage />} />, layout: true },
   { path: "/diary/edit/:id", element: <ProtectedRoute element={<EditDiaryPage />} />, layout: true },
   { path: "/profile", element: <ProtectedRoute element={<Profile />} />, layout: true },
+  { path: "/kodepos", element: <ProtectedRoute element={<KodeposPage />} />, layout: true},
 
   { path: "/login", element: <GuestRoute element={<Login />} />, layout: false },
   { path: "/register", element: <GuestRoute element={<Register />} />, layout: false },
