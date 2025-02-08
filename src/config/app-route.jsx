@@ -8,6 +8,7 @@ import DiaryPage from "../pages/diaries/DiaryPage";
 import { Navigate } from "react-router";
 import { getToken } from "./generalHelper";
 import CreateDiaryPage from "../pages/diaries/CreateDiaryPage";
+import EditDiaryPage from "../pages/diaries/EditDiaryPage";
 
 const isAuthenticated = () => !!getToken();
 
@@ -26,6 +27,7 @@ const routes = [
 
   { path: "/diary", element: <ProtectedRoute element={<DiaryPage />} />, layout: true },
   { path: "/diary/create", element: <ProtectedRoute element={<CreateDiaryPage />} />, layout: true },
+  { path: "/diary/edit/:id", element: <ProtectedRoute element={<EditDiaryPage />} />, layout: true },
   { path: "/profile", element: <ProtectedRoute element={<Profile />} />, layout: true },
 
   { path: "/login", element: <GuestRoute element={<Login />} />, layout: false },
