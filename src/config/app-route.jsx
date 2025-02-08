@@ -8,27 +8,33 @@ import DiaryPage from "../pages/diaries/DiaryPage";
 const routes = [
   {
     path: '/',
-    element: <HomePage />
-  },
-  {
-    path: '/profile',
-    element: <Profile />
-  },
-  {
-    path: '/login',
-    element: <Login />
-  },
-  {
-    path: '/register',
-    element: <Register />
+    element: <HomePage />,
+    layout: true,
   },
   {
     path: '/diary',
-    element: <DiaryPage />
+    element: <DiaryPage />,
+    layout: true,
+  },
+  {
+    path: '/profile',
+    element: <Profile />,
+    layout: true,
+  },
+  {
+    path: '/login',
+    element: <Login />,
+    layout: false,
+  },
+  {
+    path: '/register',
+    element: <Register />,
+    layout: false,
   },
   {
     path: '*',
-    element: <NotFound />
+    element: <NotFound />,
+    layout: false,
   }
 ];
 
