@@ -4,6 +4,12 @@ import HomePage from "../pages/homepage/HomePage";
 import NotFound from "../pages/not-found/NotFound";
 import Register from "../pages/auth/Register";
 import DiaryPage from "../pages/diaries/DiaryPage";
+import { Navigate } from "react-router";
+import { getToken } from "./generalHelper";
+
+const isAuthenticated = () => {
+  return !!getToken()
+};
 
 const routes = [
   {
@@ -22,13 +28,13 @@ const routes = [
     layout: true,
   },
   {
-    path: '/login',
-    element: <Login />,
+    path: "/login",
+    element: isAuthenticated() ? <Navigate to="/" /> : <Login />,
     layout: false,
   },
   {
-    path: '/register',
-    element: <Register />,
+    path: "/register",
+    element: isAuthenticated() ? <Navigate to="/" /> : <Register />,
     layout: false,
   },
   {
