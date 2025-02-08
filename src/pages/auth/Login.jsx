@@ -7,6 +7,7 @@ import { API_URL } from "../../config/generalHelper"
 import toast from "react-hot-toast"
 import { useState } from "react"
 import { useNavigate } from "react-router"
+import { Link } from "react-router"
 
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false)
@@ -63,7 +64,9 @@ const Login = () => {
     <div className="flex min-h-screen justify-center bg-gray-100">
       {/* Container */}
       <div className="w-1/2 flex flex-col gap-y-52 p-8">
+        <Link to={'/'}>
         <img src={mirai} alt="Mirai Technologies" className="w-30" />
+        </Link>
         <div className="px-20">
           <div className="flex flex-col space-y-2 mb-6">
             <h2 className="text-3xl font-bold text-primary">

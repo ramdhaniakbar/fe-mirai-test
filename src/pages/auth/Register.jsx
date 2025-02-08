@@ -7,6 +7,7 @@ import { API_URL } from "../../config/generalHelper"
 import toast from "react-hot-toast"
 import { useState } from "react"
 import { useNavigate } from "react-router"
+import { Link } from "react-router"
 
 const Register = () => {
   const [showPassword, setShowPassword] = useState(false)
@@ -56,7 +57,9 @@ const Register = () => {
       {/* Container */}
       {/* Left Section - Form */}
       <div className="w-1/2 flex flex-col gap-y-28 p-8">
+      <Link to={'/'}>
         <img src={mirai} alt="Mirai Technologies" className="w-30" />
+      </Link>
         <div className="px-20">
           <div className="flex flex-col space-y-2 mb-6">
             <h2 className="text-3xl font-bold text-primary">

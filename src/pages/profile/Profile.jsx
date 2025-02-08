@@ -4,8 +4,10 @@ import { Edit, Eye, EyeOff, LogOut, Trash } from "lucide-react"
 import { useMutation, useQueryClient } from "@tanstack/react-query"
 import axios from "axios"
 import toast from "react-hot-toast"
+import { useNavigate } from "react-router"
 
 const Profile = () => {
+  const navigate = useNavigate()
   const queryClient = useQueryClient()
 
   const [name, setName] = useState("")
@@ -29,7 +31,7 @@ const Profile = () => {
   const [previewImage, setPreviewImage] = useState("")
 
   const { mutate, isPending } = useMutation({
-    mutationKey: ["login"],
+    mutationKey: ["updateProfile"],
     mutationFn: async (data) => {
       const newData = new FormData();
 
@@ -66,7 +68,7 @@ const Profile = () => {
           password_confirmation: "",
         }))
         localStorage.setItem("user-profile", JSON.stringify(result.data.user))
-        queryClient.invalidateQueries(["profile"])
+        queryClient.invalidateQueries(["updateProfile"])
       }
 
       toast.success(result?.message || "Update profile successfull!")
@@ -109,6 +111,12 @@ const Profile = () => {
 
   const handleSubmit = () => {
     mutate(formData)
+  }
+
+  const handleLogout = () => {
+    localStorage.clear();
+
+    navigate("/login")
   }
 
   const handleFileChange = (event) => {
@@ -329,7 +337,7 @@ const Profile = () => {
 
         {/* Actions */}
         <div className="flex justify-between items-center mt-6">
-          <button className="flex items-center gap-2 text-red-600 font-semibold">
+          <button onClick={handleLogout} className="flex items-center gap-2 text-red-600 font-semibold cursor-pointer">
             <LogOut size={20} />
             Keluar
           </button>

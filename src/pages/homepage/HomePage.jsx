@@ -4,6 +4,7 @@ import diary from "../../assets/images/diary.svg"
 import axios from "axios"
 import moment from "moment"
 import { API_URL } from "../../config/generalHelper"
+import { Link } from "react-router"
 
 const HomePage = () => {
   const fetchUserActivity = async () => {
@@ -33,11 +34,13 @@ const HomePage = () => {
     <div className="relative min-h-screen">
       <div>
         <div className="absolute top-0 right-0 -z-10">
-          <img
-            src={background}
-            alt="Background Home"
-            className="w-[496px] h-[750px] object-cover rounded-bl-[56px]"
-          />
+        <Link to={'/'}>
+            <img
+              src={background}
+              alt="Background Home"
+              className="w-[496px] h-[750px] object-cover rounded-bl-[56px]"
+            />
+        </Link>
         </div>
 
         <div className="pt-44 pl-[160px] pr-[615px] flex flex-col gap-2">
