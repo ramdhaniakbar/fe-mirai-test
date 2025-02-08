@@ -24,6 +24,11 @@ yarn install
 pnpm install
 ```
 
+```bash
+# Rename .env file
+$ copy .env.example rename into .env
+```
+
 ## Running Project
 
 ```bash
