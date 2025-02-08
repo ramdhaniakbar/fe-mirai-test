@@ -7,7 +7,7 @@ import { useNavigate, useParams } from "react-router"
 import FormLoading from "../../components/loading/FormLoading"
 
 const EditDiaryPage = () => {
-  const { id } = useParams() // Get diary ID from URL
+  const { id } = useParams()
   const navigate = useNavigate()
   const queryClient = useQueryClient()
 
@@ -117,7 +117,7 @@ const EditDiaryPage = () => {
       {isPending ? (
         <FormLoading />
       ) : (
-        <div className="px-8 py-10 max-w-xl mx-auto bg-white rounded-lg shadow-[0px_4px_57px_rgba(0,0,0,0.07)]">
+        <div className="px-8 py-10 max-w-xl mx-auto bg-white shadow-[0px_4px_57px_rgba(0,0,0,0.07)]">
           <h2 className="text-2xl font-bold mb-4">Edit Diary</h2>
           <form onSubmit={handleSubmit} className="space-y-4">
             <div className="mb-6">

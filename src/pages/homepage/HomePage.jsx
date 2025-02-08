@@ -5,6 +5,7 @@ import axios from "axios"
 import moment from "moment"
 import { API_URL } from "../../config/generalHelper"
 import { Link } from "react-router"
+import FormLoading from "../../components/loading/FormLoading"
 
 const HomePage = () => {
   const fetchUserActivity = async () => {
@@ -16,22 +17,22 @@ const HomePage = () => {
 
   const {
     isPending,
-    isError,
     data: activities,
-    error,
   } = useQuery({
     queryKey: ["todos"],
     queryFn: fetchUserActivity,
   })
 
-  if (isPending) return <span>Loading...</span>
-
-  if (isError) return <span>Error: {error.message}</span>
-
   console.log("data ", activities)
 
   return (
     <div className="relative min-h-screen">
+    {isPending ? (
+      <div className="pt-44">
+        <FormLoading />
+      </div>
+    ) : (
+      <>
       <div>
         <div className="absolute top-0 right-0 -z-10">
         <Link to={'/'}>
@@ -128,6 +129,8 @@ const HomePage = () => {
           )) : <div className="bg-secondary rounded-full text-white px-3 py-2">Tidak ada data</div>}
         </div>
       </div>
+      </>
+    )}
     </div>
   )
 }

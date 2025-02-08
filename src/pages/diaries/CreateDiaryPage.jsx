@@ -90,7 +90,7 @@ const CreateDiaryPage = () => {
   console.log('form data ', formData)
 
   return (
-    <div className="mt-44 px-8 py-10 max-w-xl mx-auto bg-white rounded-lg shadow-[0px_4px_57px_rgba(0,0,0,0.07)]">
+    <div className="mt-44 px-8 py-10 max-w-xl mx-auto bg-white shadow-[0px_4px_57px_rgba(0,0,0,0.07)]">
       <h2 className="text-2xl font-bold mb-4">Buat Diary Baru</h2>
       <form onSubmit={handleSubmit} className="space-y-4">
         <div className="mb-6">
