@@ -178,7 +178,7 @@ const DiaryPage = () => {
               <button
                 disabled={!diaries.prev_page_url}
                 onClick={() => setCurrentPage((old) => Math.max(old - 1, 1))}
-                className="px-4 py-2 bg-gray-300 hover:bg-gray-400 transition-all rounded-md disabled:opacity-50 cursor-pointer"
+                className={`px-4 py-2 bg-gray-300 ${diaries.prev_page_url ? 'hover:bg-gray-400 cursor-pointer' : ''} transition-all rounded-md disabled:opacity-50`}
               >
                 <ChevronLeft />
               </button>
@@ -186,7 +186,7 @@ const DiaryPage = () => {
               <button
                 disabled={!diaries.next_page_url}
                 onClick={() => setCurrentPage((old) => old + 1)}
-                className="px-4 py-2 bg-gray-300 hover:bg-gray-400 transition-all rounded-md disabled:opacity-50 cursor-pointer"
+                className={`px-4 py-2 bg-gray-300 ${diaries.next_page_url ? 'hover:bg-gray-400 cursor-pointer' : ''} transition-all rounded-md disabled:opacity-50`}
               >
                 <ChevronRight />
               </button>
@@ -216,7 +216,7 @@ const DiaryPage = () => {
                 Total Diary Kamu:
               </h4>
               <p className="text-2xl font-bold text-gray-900">
-                {diaries?.data?.length}
+                {diaries?.total}
               </p>
             </div>
           </div>
