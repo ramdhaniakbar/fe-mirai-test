@@ -1,6 +1,6 @@
-import { useMutation, useQuery } from "@tanstack/react-query"
+import { keepPreviousData, useMutation, useQuery } from "@tanstack/react-query"
 import axios from "axios"
-import { Edit, Plus, Trash } from "lucide-react"
+import { ChevronLeft, ChevronRight, Edit, Plus, Trash } from "lucide-react"
 import { API_URL, getProfile, getToken } from "../../config/generalHelper"
 import { Link } from "react-router"
 import moment from "moment"
@@ -10,6 +10,7 @@ import toast from "react-hot-toast"
 import FormLoading from "../../components/loading/FormLoading"
 
 const DiaryPage = () => {
+  const [currentPage, setCurrentPage] = useState(1);
   const [user, setUser] = useState({
     name: "",
     photo: "",
@@ -17,8 +18,9 @@ const DiaryPage = () => {
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [selectedDiaryId, setSelectedDiaryId] = useState(null)
 
-  const fetchDiaries = async () => {
-    const { data } = await axios.get(`${API_URL}/api/diaries`, {
+  const fetchDiaries = async ({ queryKey }) => {
+    const page = queryKey[1];
+    const { data } = await axios.get(`${API_URL}/api/diaries?page=${page}`, {
       headers: {
         Accept: "application/json",
         Authorization: `Bearer ${getToken()}`,
@@ -32,8 +34,9 @@ const DiaryPage = () => {
     refetch,
     isPending,
   } = useQuery({
-    queryKey: ["diaries"],
+    queryKey: ["diaries", currentPage],
     queryFn: fetchDiaries,
+    placeholderData: keepPreviousData,
   })
 
   const { mutate, isPending: deletePending } = useMutation({
@@ -85,7 +88,7 @@ const DiaryPage = () => {
     }
   }
 
-  console.log('selected diary id ', selectedDiaryId)
+  console.log('diaries ', diaries)
 
   return (
     <div className="pt-44 px-[160px] min-h-screen">
@@ -171,6 +174,23 @@ const DiaryPage = () => {
                 Tidak ada data
               </div>
             )}
+            <div className="flex justify-center items-center gap-4 mt-8">
+              <button
+                disabled={!diaries.prev_page_url}
+                onClick={() => setCurrentPage((old) => Math.max(old - 1, 1))}
+                className="px-4 py-2 bg-gray-300 hover:bg-gray-400 transition-all rounded-md disabled:opacity-50 cursor-pointer"
+              >
+                <ChevronLeft />
+              </button>
+              <span>Halaman {currentPage}</span>
+              <button
+                disabled={!diaries.next_page_url}
+                onClick={() => setCurrentPage((old) => old + 1)}
+                className="px-4 py-2 bg-gray-300 hover:bg-gray-400 transition-all rounded-md disabled:opacity-50 cursor-pointer"
+              >
+                <ChevronRight />
+              </button>
+            </div>
           </div>
 
           {/* User Profile Section */}
